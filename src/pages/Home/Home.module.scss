@@ -1,46 +1,9 @@
 .home {
-
-	&Item {
-		width: 300px;
-		background-color: #232527;
-		border-radius: 20px;
-		position: relative;
-
-		&Img {
-			width: 100%;
-			height: auto;
-			border-radius: 20px 20px 0 0;
-			display: block;
-		}
-
-		&Content {
-			padding: 0.9rem 1.5rem 3.5rem 1.5rem;
-
-			&Title {
-				font-size: 1.4rem;
-				font-weight: 700;
-				margin-bottom: 0.9rem;
-			}
-
-			&Genres {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 8px;
-
-				li {
-					font-size: 0.9rem;
-					padding: 0.25rem 0.5rem;
-					background-color: #35383a;
-					border-radius: 10px;
-				}
-			}
-
-			&Buy {
-				position: absolute;
-				content: '';
-				bottom: 0;
-				right: 0;
-			}
-		}
-	}
+	width: 100%;
+	max-width: 1030px;
+	display: grid;
+	grid-template-columns: repeat(3, 300px);
+	grid-template-rows: auto;
+	justify-content: center;
+	gap: 35px;
 }
