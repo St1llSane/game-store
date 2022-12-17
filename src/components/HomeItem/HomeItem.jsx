@@ -1,28 +1,20 @@
 import styles from './HomeItem.module.scss'
 
-function HomeItem() {
+function HomeItem({ img, name, genres, price }) {
   return (
     <div className={styles.homeItem}>
-      <img
-        className={styles.homeItemImg}
-        src="images/items/forza5.jpg"
-        alt="Item image"
-      />
+      <img className={styles.homeItemImg} src={img} alt="Item image" />
       <div className={styles.homeItemContent}>
-        <h3 className={styles.homeItemContentTitle}>Forza Horizon 5</h3>
+        <h3 className={styles.homeItemContentTitle}>{name}</h3>
         <ul className={styles.homeItemContentGenres}>
-          <li>
-            <button>Гонки</button>
-          </li>
-          <li>
-            <button>Симулятор</button>
-          </li>
-          <li>
-            <button>Открытый мир</button>
-          </li>
+          {genres.map((genre, i) => (
+            <li key={i}>
+              <button>{genre}</button>
+            </li>
+          ))}
         </ul>
         <div className={styles.homeItemContentBuy}>
-          <span>1800 руб.</span>
+          <span>{price} руб.</span>
           <button>В корзину</button>
         </div>
       </div>
