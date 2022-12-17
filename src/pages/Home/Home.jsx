@@ -1,8 +1,7 @@
-import { games } from '../../data/games'
 import styles from './Home.module.scss'
 import HomeItem from '../../components/HomeItem'
 
-function Home() {
+function Home({ games }) {
   return (
     <div className={styles.home}>
       {games.map((game) => (
@@ -10,15 +9,10 @@ function Home() {
           img={game.img}
           name={game.name}
           genres={game.genres}
-					price={game.price}
+          price={game.price}
           key={game.id}
         />
       ))}
-      {/* <HomeItem />
-      <HomeItem />
-      <HomeItem />
-      <HomeItem />
-      <HomeItem /> */}
     </div>
   )
 }
