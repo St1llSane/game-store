@@ -1,18 +1,17 @@
 import styles from './Home.module.scss'
 import HomeItem from '../../components/HomeItem'
 
-function Home({ games }) {
+function Home({ games, filteredGames }) {
   return (
     <div className={styles.home}>
-      {games.map((game) => (
-        <HomeItem
-          img={game.img}
-          name={game.name}
-          genres={game.genres}
-          price={game.price}
-          key={game.id}
-        />
-      ))}
+      <div className={styles.homeWrapper}>
+        {filteredGames.map((game) => (
+          <HomeItem
+            {...game}
+						key={game.id}
+          />
+        ))}
+      </div>
     </div>
   )
 }
