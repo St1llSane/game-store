@@ -23,6 +23,11 @@ function App() {
     })
   }, [games, searchGamesQuery])
 
+  // Удаляем повторяющиеся элементы из массива с помощью типа данных Set и сразу же перобразуем его в массив, при этом с помощью метода flat мы возвращаем новый массив с меньшей вложенностью и с помощью метода sort сразу сортируем масиив
+  const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
+  // const genresFiltered = genres.filter((genre, i) => genres.indexOf(genre) === i)
+  // console.log(genresFiltered)
+
   return (
     <div className={styles.app}>
       <Header
@@ -33,7 +38,7 @@ function App() {
         <Route
           exact
           path="/"
-          element={<Home filteredGames={filteredGames} />}
+          element={<Home filteredGames={filteredGames} genres={genres} />}
         ></Route>
         <Route exact path="/cart" element={<Cart />}></Route>
       </Routes>
