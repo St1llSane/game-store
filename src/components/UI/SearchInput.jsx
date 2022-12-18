@@ -1,14 +1,17 @@
 import styles from './SearchInput.module.scss'
 
-function SearchInput({ query, setQuery }) {
+function SearchInput({
+  searchGamesQuery,
+  setSearchGamesQuery,
+}) {
   return (
     <div className={styles.wrapper}>
       <input
         className={styles.input}
         type="text"
-        value={query}
+        value={searchGamesQuery}
         placeholder="Поиск..."
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => setSearchGamesQuery(e.target.value)}
       />
     </div>
   )

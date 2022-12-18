@@ -7,8 +7,7 @@ import Cart from './pages/Cart'
 
 function App() {
   const [games, setGames] = useState([])
-  const [searchGames, setSearchGames] = useState('')
-  const [query, setQuery] = useState('')
+  const [searchGamesQuery, setSearchGamesQuery] = useState('')
 
   useEffect(() => {
     fetch('https://639df5493542a2613053e993.mockapi.io/games')
@@ -17,30 +16,24 @@ function App() {
       .then((games) => setGames(games))
   }, [])
 
-  const searchGamesHandler = (e) => {
-    setSearchGames(e.target.value)
-  }
-
   const filteredGames = useMemo(() => {
-    if (!query) return games
+    if (!searchGamesQuery) return games
     return games.filter((game) => {
-      return game.name.toLowerCase().includes(query.toLowerCase())
+      return game.name.toLowerCase().includes(searchGamesQuery.toLowerCase())
     })
-  }, [games, query])
+  }, [games, searchGamesQuery])
 
   return (
     <div className={styles.app}>
       <Header
-        searchGames={searchGames}
-        searchGamesHandler={searchGamesHandler}
-        query={query}
-        setQuery={setQuery}
+        searchGamesQuery={searchGamesQuery}
+        setSearchGamesQuery={setSearchGamesQuery}
       />
       <Routes>
         <Route
           exact
           path="/"
-          element={<Home games={games} filteredGames={filteredGames} />}
+          element={<Home filteredGames={filteredGames} />}
         ></Route>
         <Route exact path="/cart" element={<Cart />}></Route>
       </Routes>

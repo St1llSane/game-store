@@ -3,7 +3,10 @@ import { RiShoppingCartLine } from 'react-icons/ri'
 import styles from './Header.module.scss'
 import SearchInput from '../UI/SearchInput'
 
-function Header({ query, setQuery }) {
+function Header({
+  searchGamesQuery,
+  setSearchGamesQuery,
+}) {
   return (
     <header className={styles.header}>
       <Link to="/">
@@ -16,8 +19,8 @@ function Header({ query, setQuery }) {
             path="/"
             element={
               <SearchInput
-								query={query}
-								setQuery={setQuery}
+                searchGamesQuery={searchGamesQuery}
+                setSearchGamesQuery={setSearchGamesQuery}
               />
             }
           ></Route>
