@@ -8,6 +8,11 @@
 		color: #f0f0f0;
 		font-size: 2.2rem;
 		font-weight: 700;
+		transition: color .1s ease;
+
+		&:hover {
+			color: #e77f6c;
+		}
 	}
 
 	&Input {
@@ -29,7 +34,7 @@
 			transition: color .1s ease;
 
 			&:hover {
-				color: #da5038;
+				color: #e77f6c;
 			}
 
 			span {

@@ -1,6 +1,6 @@
 import styles from './HomeItem.module.scss'
 
-function HomeItem({ img, name, genres, price }) {
+function HomeItem({ img, name, genres, price, setGamesByGenres }) {
   return (
     <div className={styles.homeItem}>
       <img className={styles.homeItemImg} src={img} alt="Item image" />
@@ -9,7 +9,7 @@ function HomeItem({ img, name, genres, price }) {
         <ul className={styles.homeItemContentGenres}>
           {genres.map((genre, i) => (
             <li key={i}>
-              <button>{genre}</button>
+              <button onClick={(e) => setGamesByGenres(e.target.innerText)}>{genre}</button>
             </li>
           ))}
         </ul>

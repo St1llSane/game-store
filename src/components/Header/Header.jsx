@@ -3,10 +3,7 @@ import { RiShoppingCartLine } from 'react-icons/ri'
 import styles from './Header.module.scss'
 import SearchInput from '../UI/SearchInput'
 
-function Header({
-  searchGamesQuery,
-  setSearchGamesQuery,
-}) {
+function Header({ searchGamesQuery, setSearchGamesQuery }) {
   return (
     <header className={styles.header}>
       <Link to="/">
