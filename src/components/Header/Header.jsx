@@ -24,12 +24,15 @@ function Header({ searchGamesQuery, setSearchGamesQuery }) {
         </Routes>
       </div>
       <div className={styles.headerRight}>
-        <Link to="/cart">
-          <button className={styles.headerRightCart}>
-            <RiShoppingCartLine />
-            <span>0</span>
-          </button>
-        </Link>
+        <div className={styles.headerRightCartwrapper}>
+          <Link to="/cart">
+            <button className={styles.headerRightCart}>
+              <RiShoppingCartLine />
+              <span>0</span>
+            </button>
+          </Link>
+          <div className={styles.headerRightCartinfo}>fdsfsd</div>
+        </div>
         <span className={styles.headerRightMoney}>5000 руб.</span>
       </div>
     </header>

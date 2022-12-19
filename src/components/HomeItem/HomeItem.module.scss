@@ -35,6 +35,11 @@
         padding: 0.25rem 0.5rem;
         background-color: #35383a;
         border-radius: 10px;
+				transition: background-color .1s ease;
+
+				&:hover {
+					background-color: #454749;
+				}
       }
     }
 

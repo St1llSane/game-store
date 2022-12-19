@@ -1,62 +1,88 @@
 .header {
-	display: flex;
-	align-items: center;
-	gap: 35px;
-	margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  margin-bottom: 50px;
 
-	&Logo {
-		color: #f0f0f0;
-		font-size: 2.2rem;
-		font-weight: 700;
-		transition: color .1s ease;
+  &Logo {
+    color: #f0f0f0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    transition: color 0.1s ease;
 
-		&:hover {
-			color: #e77f6c;
-		}
-	}
+    &:hover {
+      color: #e77f6c;
+    }
+  }
 
-	&Input {
-		width: 100%;
-		max-width: 320px;
-		min-width: 200px;
-		margin-left: auto;
-	}
+  &Input {
+    width: 100%;
+    max-width: 320px;
+    min-width: 200px;
+    margin-left: auto;
+  }
 
-	&Right {
-		display: flex;
-		align-items: center;
-		column-gap: 1.7rem;
+  &Right {
+    display: flex;
+    align-items: center;
+    column-gap: 1.7rem;
 
-		&Cart {
-			font-size: 1.7rem;
-			margin-top: 5px;
-			position: relative;
-			transition: color .1s ease;
+    &Cartwrapper {
+      position: relative;
 
-			&:hover {
-				color: #e77f6c;
-			}
+      &:hover .headerRightCartinfo {
+        visibility: visible;
+      }
+    }
 
-			span {
-				position: absolute;
-				top: -8px;
-				right: -12px;
-				width: 22px;
-				height: 22px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				padding-right: 1px;
-				color: #fff;
-				font-size: 1.1rem;
-				background-color: #da5038;
-				border-radius: 50px;
-				z-index: 10;
-			}
-		}
-		
-		&Money {
-			font-weight: 600;
-		}
-	}
+    &Cart {
+      font-size: 1.7rem;
+      margin-top: 5px;
+      position: relative;
+      transition: color 0.1s ease;
+
+      &:hover {
+        color: #e77f6c;
+      }
+
+      span {
+        position: absolute;
+        top: -8px;
+        right: -12px;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 1px;
+        color: #fff;
+        font-size: 1.1rem;
+        background-color: #da5038;
+        border-radius: 50px;
+        z-index: 10;
+      }
+    }
+
+    &Cartinfo {
+      position: absolute;
+      content: '';
+      top: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 190px;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+      background-color: #35383a;
+      border-radius: 20px;
+      visibility: hidden;
+      z-index: 100;
+    }
+
+    &Money {
+      font-weight: 600;
+    }
+  }
 }

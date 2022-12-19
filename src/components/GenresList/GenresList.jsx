@@ -5,9 +5,9 @@ function GenresList({ genres, setGamesByGenres }) {
     <div className={styles.genresBlock}>
       <h3 className={styles.genresBlockTitle}>Жанры</h3>
       <ul className={styles.genresList}>
-				<li>
-					<button onClick={() => setGamesByGenres('')}>Все</button>
-				</li>
+        <li>
+          <button onClick={() => setGamesByGenres('')}>Все</button>
+        </li>
         {genres.map((genre) => (
           <li key={genre}>
             <button onClick={(e) => setGamesByGenres(e.target.innerText)}>
