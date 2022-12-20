@@ -2,6 +2,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { RiShoppingCartLine } from 'react-icons/ri'
 import styles from './Header.module.scss'
 import SearchInput from '../UI/SearchInput'
+import CartPreview from '../CartPreview'
 
 function Header({ searchGamesQuery, setSearchGamesQuery }) {
   return (
@@ -31,7 +32,7 @@ function Header({ searchGamesQuery, setSearchGamesQuery }) {
               <span>0</span>
             </button>
           </Link>
-          <div className={styles.headerRightCartinfo}>fdsfsd</div>
+					<CartPreview />
         </div>
         <span className={styles.headerRightMoney}>5000 руб.</span>
       </div>

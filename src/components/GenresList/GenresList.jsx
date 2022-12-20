@@ -1,6 +1,10 @@
 import styles from './GenresList.module.scss'
 
 function GenresList({ genres, setGamesByGenres }) {
+  const gamesByGenresHandler = (e) => {
+    setGamesByGenres(e.target.innerText)
+  }
+
   return (
     <div className={styles.genresBlock}>
       <h3 className={styles.genresBlockTitle}>Жанры</h3>
@@ -10,9 +14,7 @@ function GenresList({ genres, setGamesByGenres }) {
         </li>
         {genres.map((genre) => (
           <li key={genre}>
-            <button onClick={(e) => setGamesByGenres(e.target.innerText)}>
-              {genre}
-            </button>
+            <button onClick={gamesByGenresHandler}>{genre}</button>
           </li>
         ))}
       </ul>

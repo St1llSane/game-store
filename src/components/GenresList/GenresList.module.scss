@@ -37,12 +37,9 @@
       position: relative;
       z-index: 10;
 
-      &.active::after {
-        opacity: 1;
-      }
-
+			
       &::after {
-        position: absolute;
+				position: absolute;
         content: '';
         left: 0;
         top: 0;
@@ -54,7 +51,10 @@
         transition: opacity 0.1s ease;
         z-index: -1;
       }
-
+			
+			&.active::after {
+				opacity: 1;
+			}
       &:hover::after {
         opacity: 1;
       }
