@@ -12,14 +12,26 @@ function App() {
   const [gamesByGenres, setGamesByGenres] = useState([])
   const [cartGames, setCartGames] = useState([])
 
+  // TODO Решить проблему с массивом вложенных объектов при получении cartGames
+
   useEffect(() => {
-    axios.get('https://639df5493542a2613053e993.mockapi.io/games')
+    axios
+      .get('https://639df5493542a2613053e993.mockapi.io/games')
       .catch((error) => {
         alert('Ошибка при загрузке игр')
         console.log(error)
       })
       .then((res) => setGames(res.data))
+
+    axios
+      .get('https://639df5493542a2613053e993.mockapi.io/cartGames')
+      .catch((error) => {
+        alert('Ошибка при загрузке корзины')
+        console.log(error)
+      })
+      .then((res) => setCartGames(res.data))
   }, [])
+  console.log(cartGames)
 
   // Поиск игр по запросу в инпуте либо по жанру
   const filteredGames = useMemo(() => {
@@ -40,17 +52,25 @@ function App() {
   // const genresFiltered = genres.filter((genre, i) => genres.indexOf(genre) === i)
   // console.log(genresFiltered)
 
-	const addGameToCartHandler = (id) => {
-		const thisGame = games.filter(game => game.id === id)
-		setCartGames([...cartGames, ...thisGame])
-		console.log(cartGames)
-	}
+  const addGameToCartHandler = (id) => {
+    const thisGame = games.filter((game) => game.id === id)
+    setCartGames([...cartGames, ...thisGame])
+    console.log(cartGames)
+
+    axios
+      .post('https://639df5493542a2613053e993.mockapi.io/cartGames', thisGame)
+      .catch((error) => {
+        alert('Ошибка при добавлении в корзину')
+        console.log(error)
+      })
+  }
 
   return (
     <div className={styles.app}>
       <Header
         searchGamesQuery={searchGamesQuery}
         setSearchGamesQuery={setSearchGamesQuery}
+        cartGames={cartGames}
       />
       <Routes>
         <Route
@@ -61,8 +81,8 @@ function App() {
               filteredGames={filteredGames}
               genres={genres}
               setGamesByGenres={setGamesByGenres}
-							addGameToCart={addGameToCartHandler}
-							setCartGames={setCartGames}
+              addGameToCart={addGameToCartHandler}
+              setCartGames={setCartGames}
             />
           }
         ></Route>

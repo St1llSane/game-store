@@ -2,22 +2,24 @@ import styles from './CartPreview.module.scss'
 import { BsPlusLg } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
-function CartPreview() {
+function CartPreview({ cartGames }) {
   return (
     <div className={styles.cartPreview}>
       <ul className={styles.cartPreviewList}>
-        <li className={styles.cartPreviewListItem}>
-          <img src="images/items/codmw2022.jpg" alt="game_img" />
-          <div className={styles.cartPreviewListItemContent}>
-            <div className={styles.cartPreviewListItemInfo}>
-              <h6>Call of Duty MW2 (2022)</h6>
-              <span>2990 руб.</span>
+        {cartGames.map((cartGame) => (
+          <li className={styles.cartPreviewListItem} key={cartGame.id}>
+            <img src={cartGame.img} alt="game_img" />
+            <div className={styles.cartPreviewListItemContent}>
+              <div className={styles.cartPreviewListItemInfo}>
+                <h6>{cartGame.name}</h6>
+                <span>{cartGame.price} руб.</span>
+              </div>
+              <button>
+                <BsPlusLg />
+              </button>
             </div>
-            <button>
-              <BsPlusLg />
-            </button>
-          </div>
-        </li>
+          </li>
+        ))}
       </ul>
       <div className={styles.cartPreviewTotal}>
         <ul className={styles.cartPreviewTotalInfo}>
