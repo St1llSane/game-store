@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import axios from 'axios'
 import styles from './App.module.scss'
 import Header from './components/Header'
 import Home from './pages/Home'
@@ -9,15 +10,15 @@ function App() {
   const [games, setGames] = useState([])
   const [searchGamesQuery, setSearchGamesQuery] = useState('')
   const [gamesByGenres, setGamesByGenres] = useState([])
+  const [cartGames, setCartGames] = useState([])
 
   useEffect(() => {
-    fetch('https://639df5493542a2613053e993.mockapi.io/games')
+    axios.get('https://639df5493542a2613053e993.mockapi.io/games')
       .catch((error) => {
         alert('Ошибка при загрузке игр')
         console.log(error)
       })
-      .then((res) => res.json())
-      .then((games) => setGames(games))
+      .then((res) => setGames(res.data))
   }, [])
 
   // Поиск игр по запросу в инпуте либо по жанру
@@ -39,6 +40,12 @@ function App() {
   // const genresFiltered = genres.filter((genre, i) => genres.indexOf(genre) === i)
   // console.log(genresFiltered)
 
+	const addGameToCartHandler = (id) => {
+		const thisGame = games.filter(game => game.id === id)
+		setCartGames([...cartGames, ...thisGame])
+		console.log(cartGames)
+	}
+
   return (
     <div className={styles.app}>
       <Header
@@ -54,6 +61,8 @@ function App() {
               filteredGames={filteredGames}
               genres={genres}
               setGamesByGenres={setGamesByGenres}
+							addGameToCart={addGameToCartHandler}
+							setCartGames={setCartGames}
             />
           }
         ></Route>

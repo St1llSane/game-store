@@ -18,54 +18,6 @@ function CartPreview() {
             </button>
           </div>
         </li>
-        <li className={styles.cartPreviewListItem}>
-          <img src="images/items/callistoprotocol.jpg" alt="game_img" />
-          <div className={styles.cartPreviewListItemContent}>
-            <div className={styles.cartPreviewListItemInfo}>
-              <h6>Calisto Protocol</h6>
-              <span>2990 руб.</span>
-            </div>
-            <button>
-              <BsPlusLg />
-            </button>
-          </div>
-        </li>
-        <li className={styles.cartPreviewListItem}>
-          <img src="images/items/codmw2022.jpg" alt="game_img" />
-          <div className={styles.cartPreviewListItemContent}>
-            <div className={styles.cartPreviewListItemInfo}>
-              <h6>Call of Duty MW2 (2022)</h6>
-              <span>2990 руб.</span>
-            </div>
-            <button>
-              <BsPlusLg />
-            </button>
-          </div>
-        </li>
-        <li className={styles.cartPreviewListItem}>
-          <img src="images/items/callistoprotocol.jpg" alt="game_img" />
-          <div className={styles.cartPreviewListItemContent}>
-            <div className={styles.cartPreviewListItemInfo}>
-              <h6>Calisto Protocol</h6>
-              <span>2990 руб.</span>
-            </div>
-            <button>
-              <BsPlusLg />
-            </button>
-          </div>
-        </li>
-        <li className={styles.cartPreviewListItem}>
-          <img src="images/items/callistoprotocol.jpg" alt="game_img" />
-          <div className={styles.cartPreviewListItemContent}>
-            <div className={styles.cartPreviewListItemInfo}>
-              <h6>Calisto Protocol</h6>
-              <span>2990 руб.</span>
-            </div>
-            <button>
-              <BsPlusLg />
-            </button>
-          </div>
-        </li>
       </ul>
       <div className={styles.cartPreviewTotal}>
         <ul className={styles.cartPreviewTotalInfo}>
