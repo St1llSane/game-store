@@ -6,11 +6,15 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 
+const LS_CART_GAMES = 'games:savedCartGames'
+
 function App() {
   const [games, setGames] = useState([])
   const [searchGamesQuery, setSearchGamesQuery] = useState('')
   const [gamesByGenres, setGamesByGenres] = useState([])
   const [cartGames, setCartGames] = useState([])
+
+	// TODO Добавить обозначение, что игра находится в корзине
 
   useEffect(() => {
     axios
@@ -52,12 +56,13 @@ function App() {
   const addGameToCartHandler = (id) => {
     const findGame = games.filter((game) => game.id === id)
     const thisGame = findGame[0]
-    setCartGames([...cartGames, thisGame])
     console.log(thisGame)
+    console.log(cartGames)
 
-    if (cartGames.entries(thisGame[0])) {
-      console.log('Есть')
+    if (cartGames.includes(thisGame)) {
+      return cartGames
     } else {
+      setCartGames([...cartGames, thisGame])
       axios
         .post('https://639df5493542a2613053e993.mockapi.io/cartGames', thisGame)
         .catch((error) => {
@@ -67,12 +72,44 @@ function App() {
     }
   }
 
+  const minusCartGameCount = (id) => {
+    setCartGames((prev) => {
+      return prev.map((game) => {
+        if (game.id === id && game.count > 1) {
+          return {
+            ...game,
+            count: --game.count,
+            totalPrice: game.price * game.count,
+          }
+        }
+        return game
+      })
+    })
+		localStorage.setItem(LS_CART_GAMES, JSON.stringify(cartGames))
+  }
+  const plusCartGameCount = (id) => {
+    setCartGames((prev) => {
+      return prev.map((game) => {
+        if (game.id === id && game.count < 10) {
+          return {
+            ...game,
+            count: ++game.count,
+            totalPrice: game.price * game.count,
+          }
+        }
+        return game
+      })
+    })
+  }
+
   return (
     <div className={styles.app}>
       <Header
         searchGamesQuery={searchGamesQuery}
         setSearchGamesQuery={setSearchGamesQuery}
         cartGames={cartGames}
+        minusCartGameCount={minusCartGameCount}
+        plusCartGameCount={plusCartGameCount}
       />
       <Routes>
         <Route

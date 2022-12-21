@@ -1,24 +1,23 @@
 import styles from './CartPreview.module.scss'
-import { BsPlusLg } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import CartPreviewItem from '../CartPreviewItem'
 
-function CartPreview({ cartGames }) {
+function CartPreview({ cartGames, minusCartGameCount, plusCartGameCount }) {
+  let cartTotalPrice = 0
+  if (cartGames.length > 0) {
+    cartTotalPrice = cartGames.reduce((summ, game) => summ + game.totalPrice, 0)
+  }
+
   return (
     <div className={styles.cartPreview}>
       <ul className={styles.cartPreviewList}>
         {cartGames.map((cartGame) => (
-          <li className={styles.cartPreviewListItem} key={cartGame.id}>
-            <img src={cartGame.img} alt="game_img" />
-            <div className={styles.cartPreviewListItemContent}>
-              <div className={styles.cartPreviewListItemInfo}>
-                <h6>{cartGame.name}</h6>
-                <span>{cartGame.price} руб.</span>
-              </div>
-              <button>
-                <BsPlusLg />
-              </button>
-            </div>
-          </li>
+          <CartPreviewItem
+            {...cartGame}
+            minusCartGameCount={minusCartGameCount}
+            plusCartGameCount={plusCartGameCount}
+            key={cartGame.id}
+          />
         ))}
       </ul>
       <div className={styles.cartPreviewTotal}>
@@ -26,12 +25,12 @@ function CartPreview({ cartGames }) {
           <li className={styles.cartPreviewTotalInfoItem}>
             <div>Товаров:</div>
             <span></span>
-            <div>2 шт.</div>
+            <div>{cartGames.length} шт.</div>
           </li>
           <li className={styles.cartPreviewTotalInfoItem}>
             <div>К оплате:</div>
             <span></span>
-            <div>4000 руб.</div>
+            <div>{cartTotalPrice} руб.</div>
           </li>
         </ul>
         <Link to="/cart">

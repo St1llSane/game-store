@@ -4,7 +4,13 @@ import styles from './Header.module.scss'
 import SearchInput from '../UI/SearchInput'
 import CartPreview from '../CartPreview'
 
-function Header({ searchGamesQuery, setSearchGamesQuery, cartGames }) {
+function Header({
+  searchGamesQuery,
+  setSearchGamesQuery,
+  cartGames,
+  minusCartGameCount,
+  plusCartGameCount,
+}) {
   return (
     <header className={styles.header}>
       <Link to="/">
@@ -32,7 +38,11 @@ function Header({ searchGamesQuery, setSearchGamesQuery, cartGames }) {
               <span>{cartGames.length}</span>
             </button>
           </Link>
-					<CartPreview cartGames={cartGames} />
+          <CartPreview
+            cartGames={cartGames}
+            minusCartGameCount={minusCartGameCount}
+            plusCartGameCount={plusCartGameCount}
+          />
         </div>
         <span className={styles.headerRightMoney}>5000 руб.</span>
       </div>
