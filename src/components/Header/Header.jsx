@@ -29,7 +29,7 @@ function Header({ searchGamesQuery, setSearchGamesQuery, cartGames }) {
           <Link to="/cart">
             <button className={styles.headerRightCart}>
               <RiShoppingCartLine />
-              <span>0</span>
+              <span>{cartGames.length}</span>
             </button>
           </Link>
 					<CartPreview cartGames={cartGames} />

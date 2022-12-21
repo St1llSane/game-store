@@ -12,8 +12,6 @@ function App() {
   const [gamesByGenres, setGamesByGenres] = useState([])
   const [cartGames, setCartGames] = useState([])
 
-  // TODO Решить проблему с массивом вложенных объектов при получении cartGames
-
   useEffect(() => {
     axios
       .get('https://639df5493542a2613053e993.mockapi.io/games')
@@ -31,7 +29,6 @@ function App() {
       })
       .then((res) => setCartGames(res.data))
   }, [])
-  console.log(cartGames)
 
   // Поиск игр по запросу в инпуте либо по жанру
   const filteredGames = useMemo(() => {
@@ -53,16 +50,21 @@ function App() {
   // console.log(genresFiltered)
 
   const addGameToCartHandler = (id) => {
-    const thisGame = games.filter((game) => game.id === id)
-    setCartGames([...cartGames, ...thisGame])
-    console.log(cartGames)
+    const findGame = games.filter((game) => game.id === id)
+    const thisGame = findGame[0]
+    setCartGames([...cartGames, thisGame])
+    console.log(thisGame)
 
-    axios
-      .post('https://639df5493542a2613053e993.mockapi.io/cartGames', thisGame)
-      .catch((error) => {
-        alert('Ошибка при добавлении в корзину')
-        console.log(error)
-      })
+    if (cartGames.entries(thisGame[0])) {
+      console.log('Есть')
+    } else {
+      axios
+        .post('https://639df5493542a2613053e993.mockapi.io/cartGames', thisGame)
+        .catch((error) => {
+          alert('Ошибка при добавлении в корзину')
+          console.log(error)
+        })
+    }
   }
 
   return (
