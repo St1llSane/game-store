@@ -7,6 +7,7 @@ function CartPreviewItem({
   name,
   price,
   count,
+	deleteGameFromCart,
   minusCartGameCount,
   plusCartGameCount,
 }) {
@@ -18,7 +19,7 @@ function CartPreviewItem({
           <h6>{name}</h6>
           <span>{price} руб.</span>
         </div>
-        <button>
+        <button onClick={() => deleteGameFromCart(id)}>
           <BsPlusLg />
         </button>
       </div>

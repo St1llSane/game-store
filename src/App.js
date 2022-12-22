@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { json, Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 import styles from './App.module.scss'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 
-const LS_CART_GAMES = 'games:savedCartGames'
+// const LS_CART_GAMES = 'savedCartGames'
 
 function App() {
   const [games, setGames] = useState([])
@@ -14,7 +14,7 @@ function App() {
   const [gamesByGenres, setGamesByGenres] = useState([])
   const [cartGames, setCartGames] = useState([])
 
-	// TODO Добавить обозначение, что игра находится в корзине
+  // TODO Добавить обозначение, что игра находится в корзине
 
   useEffect(() => {
     axios
@@ -60,9 +60,10 @@ function App() {
     console.log(cartGames)
 
     if (cartGames.includes(thisGame)) {
-      return cartGames
+      return
     } else {
       setCartGames([...cartGames, thisGame])
+      // cartGamesToLocalStorage(thisGame)
       axios
         .post('https://639df5493542a2613053e993.mockapi.io/cartGames', thisGame)
         .catch((error) => {
@@ -72,10 +73,19 @@ function App() {
     }
   }
 
+  const deleteGameFromCart = (id) => {
+		setCartGames((prev) => prev.filter((game) => game.id !== id))
+  }
+
+  // const cartGamesToLocalStorage = (thisGame) => {
+  //   localStorage.setItem(LS_CART_GAMES, JSON.stringify([...cartGames, thisGame]))
+  // }
+
   const minusCartGameCount = (id) => {
     setCartGames((prev) => {
       return prev.map((game) => {
         if (game.id === id && game.count > 1) {
+          // cartGamesToLocalStorage()
           return {
             ...game,
             count: --game.count,
@@ -85,12 +95,13 @@ function App() {
         return game
       })
     })
-		localStorage.setItem(LS_CART_GAMES, JSON.stringify(cartGames))
   }
+
   const plusCartGameCount = (id) => {
     setCartGames((prev) => {
       return prev.map((game) => {
         if (game.id === id && game.count < 10) {
+          // cartGamesToLocalStorage()
           return {
             ...game,
             count: ++game.count,
@@ -108,6 +119,7 @@ function App() {
         searchGamesQuery={searchGamesQuery}
         setSearchGamesQuery={setSearchGamesQuery}
         cartGames={cartGames}
+        deleteGameFromCart={deleteGameFromCart}
         minusCartGameCount={minusCartGameCount}
         plusCartGameCount={plusCartGameCount}
       />

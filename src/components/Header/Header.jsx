@@ -8,6 +8,7 @@ function Header({
   searchGamesQuery,
   setSearchGamesQuery,
   cartGames,
+	deleteGameFromCart,
   minusCartGameCount,
   plusCartGameCount,
 }) {
@@ -40,6 +41,7 @@ function Header({
           </Link>
           <CartPreview
             cartGames={cartGames}
+						deleteGameFromCart={deleteGameFromCart}
             minusCartGameCount={minusCartGameCount}
             plusCartGameCount={plusCartGameCount}
           />
