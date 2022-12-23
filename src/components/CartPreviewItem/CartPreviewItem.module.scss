@@ -61,40 +61,4 @@
 			margin-bottom: 3px;
 		}
 	}
-
-	&Count {
-		position: absolute;
-		right: 10px;
-		bottom: 5px;
-		display: flex;
-		align-items: center;
-		gap: 5px;
-
-		&Num,
-		button {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			color: #232527;
-			font-weight: 700;
-			background-color: #fff;
-			border-radius: 20px;
-		}
-
-		button {
-			width: 19px;
-			height: 19px;
-			transition: background-color 0.1s ease;
-
-			&:hover {
-				background-color: #e77f6c;
-			}
-		}
-
-		&Num {
-			width: 24px;
-			height: 24px;
-			padding-top: 1px;
-		}
-	}
 }

@@ -1,12 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
-import { json, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 import styles from './App.module.scss'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
-
-// const LS_CART_GAMES = 'savedCartGames'
 
 function App() {
   const [games, setGames] = useState([])
@@ -34,7 +32,6 @@ function App() {
       .then((res) => setCartGames(res.data))
   }, [])
 
-  // Поиск игр по запросу в инпуте либо по жанру
   const filteredGames = useMemo(() => {
     if (gamesByGenres.length === 0) {
       if (!searchGamesQuery) return games
@@ -48,10 +45,7 @@ function App() {
     }
   }, [games, searchGamesQuery, gamesByGenres])
 
-  // Удаляем повторяющиеся элементы из массива с помощью типа данных Set и сразу же перобразуем его в массив, при этом с помощью метода flat мы возвращаем новый массив с меньшей вложенностью и с помощью метода sort сразу сортируем масиив
   const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
-  // const genresFiltered = genres.filter((genre, i) => genres.indexOf(genre) === i)
-  // console.log(genresFiltered)
 
   const addGameToCartHandler = (id) => {
     const findGame = games.filter((game) => game.id === id)
@@ -74,43 +68,7 @@ function App() {
   }
 
   const deleteGameFromCart = (id) => {
-		setCartGames((prev) => prev.filter((game) => game.id !== id))
-  }
-
-  // const cartGamesToLocalStorage = (thisGame) => {
-  //   localStorage.setItem(LS_CART_GAMES, JSON.stringify([...cartGames, thisGame]))
-  // }
-
-  const minusCartGameCount = (id) => {
-    setCartGames((prev) => {
-      return prev.map((game) => {
-        if (game.id === id && game.count > 1) {
-          // cartGamesToLocalStorage()
-          return {
-            ...game,
-            count: --game.count,
-            totalPrice: game.price * game.count,
-          }
-        }
-        return game
-      })
-    })
-  }
-
-  const plusCartGameCount = (id) => {
-    setCartGames((prev) => {
-      return prev.map((game) => {
-        if (game.id === id && game.count < 10) {
-          // cartGamesToLocalStorage()
-          return {
-            ...game,
-            count: ++game.count,
-            totalPrice: game.price * game.count,
-          }
-        }
-        return game
-      })
-    })
+    setCartGames((prev) => prev.filter((game) => game.id !== id))
   }
 
   return (
@@ -120,8 +78,6 @@ function App() {
         setSearchGamesQuery={setSearchGamesQuery}
         cartGames={cartGames}
         deleteGameFromCart={deleteGameFromCart}
-        minusCartGameCount={minusCartGameCount}
-        plusCartGameCount={plusCartGameCount}
       />
       <Routes>
         <Route

@@ -8,9 +8,7 @@ function Header({
   searchGamesQuery,
   setSearchGamesQuery,
   cartGames,
-	deleteGameFromCart,
-  minusCartGameCount,
-  plusCartGameCount,
+  deleteGameFromCart,
 }) {
   return (
     <header className={styles.header}>
@@ -41,9 +39,7 @@ function Header({
           </Link>
           <CartPreview
             cartGames={cartGames}
-						deleteGameFromCart={deleteGameFromCart}
-            minusCartGameCount={minusCartGameCount}
-            plusCartGameCount={plusCartGameCount}
+            deleteGameFromCart={deleteGameFromCart}
           />
         </div>
         <span className={styles.headerRightMoney}>5000 руб.</span>

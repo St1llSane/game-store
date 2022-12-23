@@ -1,16 +1,7 @@
 import { BsPlusLg } from 'react-icons/bs'
 import styles from './CartPreviewItem.module.scss'
 
-function CartPreviewItem({
-  id,
-  img,
-  name,
-  price,
-  count,
-	deleteGameFromCart,
-  minusCartGameCount,
-  plusCartGameCount,
-}) {
+function CartPreviewItem({ id, img, name, price, deleteGameFromCart }) {
   return (
     <li className={styles.cartPreviewListItem} key={id}>
       <img src={img} alt="game_img" />
@@ -21,15 +12,6 @@ function CartPreviewItem({
         </div>
         <button onClick={() => deleteGameFromCart(id)}>
           <BsPlusLg />
-        </button>
-      </div>
-      <div className={styles.cartPreviewListItemCount}>
-        <button onClick={() => minusCartGameCount(id)}>
-          <span>-</span>
-        </button>
-        <span className={styles.cartPreviewListItemCountNum}>{count}</span>
-        <button onClick={() => plusCartGameCount(id)}>
-          <span>+</span>
         </button>
       </div>
     </li>

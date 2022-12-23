@@ -1,8 +1,8 @@
-import styles from './CartPreview.module.scss'
 import { Link } from 'react-router-dom'
+import styles from './CartPreview.module.scss'
 import CartPreviewItem from '../CartPreviewItem'
 
-function CartPreview({ cartGames, deleteGameFromCart, minusCartGameCount, plusCartGameCount }) {
+function CartPreview({ cartGames, deleteGameFromCart }) {
   let cartTotalPrice = 0
   if (cartGames.length > 0) {
     cartTotalPrice = cartGames.reduce((summ, game) => summ + game.totalPrice, 0)
@@ -14,9 +14,7 @@ function CartPreview({ cartGames, deleteGameFromCart, minusCartGameCount, plusCa
         {cartGames.map((cartGame) => (
           <CartPreviewItem
             {...cartGame}
-						deleteGameFromCart={deleteGameFromCart}
-            minusCartGameCount={minusCartGameCount}
-            plusCartGameCount={plusCartGameCount}
+            deleteGameFromCart={deleteGameFromCart}
             key={cartGame.id}
           />
         ))}
