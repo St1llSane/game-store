@@ -9,8 +9,9 @@
   padding: 10px 6px;
   background-color: #35383a;
   border-radius: 20px;
-  // visibility: hidden;
-  // opacity: 0;
+	box-shadow: 0 3px 17px #222425;
+  visibility: hidden;
+  opacity: 0;
   z-index: 100;
   transition: visibility 0.2s ease, opacity 0.2s ease;
 

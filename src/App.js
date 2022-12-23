@@ -48,16 +48,21 @@ function App() {
   const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
 
   const addGameToCartHandler = (id) => {
-    const findGame = games.filter((game) => game.id === id)
-    const thisGame = findGame[0]
-    console.log(thisGame)
-    console.log(cartGames)
+    const thisGame = games.find((game) => game.id === id)
+    thisGame.inCart = !thisGame.inCart
 
     if (cartGames.includes(thisGame)) {
-      return
+      setCartGames((prev) => prev.filter((game) => game.id !== id))
+      axios
+        .delete(
+          `https://639df5493542a2613053e993.mockapi.io/cartGames/${thisGame.id}`
+        )
+        .catch((error) => {
+          alert('Ошибка при удалении из корзины')
+          console.log(error)
+        })
     } else {
       setCartGames([...cartGames, thisGame])
-      // cartGamesToLocalStorage(thisGame)
       axios
         .post('https://639df5493542a2613053e993.mockapi.io/cartGames', thisGame)
         .catch((error) => {
@@ -67,8 +72,16 @@ function App() {
     }
   }
 
+  const isGameInCart = (id) => {
+    return cartGames.some((game) => game.id === id)
+  }
+
   const deleteGameFromCart = (id) => {
+		const thisGame = games.find((game) => game.id === id)
+		thisGame.inCart = !thisGame.inCart
+		
     setCartGames((prev) => prev.filter((game) => game.id !== id))
+    axios.delete(`https://639df5493542a2613053e993.mockapi.io/cartGames/${id}`)
   }
 
   return (
@@ -90,6 +103,7 @@ function App() {
               setGamesByGenres={setGamesByGenres}
               addGameToCart={addGameToCartHandler}
               setCartGames={setCartGames}
+              isGameInCart={isGameInCart}
             />
           }
         ></Route>

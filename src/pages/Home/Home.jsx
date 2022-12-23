@@ -8,6 +8,7 @@ function Home({
   setGamesByGenres,
   addGameToCart,
   setCartGames,
+	isGameInCart
 }) {
   return (
     <div className={styles.home}>
@@ -18,6 +19,7 @@ function Home({
             setGamesByGenres={setGamesByGenres}
             setCartGames={setCartGames}
             addGameToCart={addGameToCart}
+						isGameInCart={isGameInCart}
             key={game.id}
           />
         ))}
