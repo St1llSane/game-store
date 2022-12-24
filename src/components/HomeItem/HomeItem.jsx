@@ -11,6 +11,12 @@ function HomeItem({
   addGameToCart,
   isGameInCart,
 }) {
+  const item = { id, parentId: id, img, name, price, inCart }
+
+  const gameToCart = () => {
+    addGameToCart(item)
+  }
+
   return (
     <div className={styles.homeItem}>
       <img className={styles.homeItemImg} src={img} alt="Item image" />
@@ -31,9 +37,10 @@ function HomeItem({
             className={`${styles.homeItemContentBuyBtn} ${
               inCart ? styles.homeItemContentBuyBtnInCart : ''
             }`}
-            onClick={() => addGameToCart(id)}
+            onClick={gameToCart}
           >
-            {isGameInCart(id) ? 'Удалить' : 'В корзину'}
+            {/* {isGameInCart(id) ? 'Удалить' : 'В корзину'} */}
+						В корзину
           </button>
         </div>
       </div>

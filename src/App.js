@@ -49,14 +49,13 @@ function App() {
 
   const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
 
-  const addGameToCartHandler = (id) => {
-    const thisGame = games.find((game) => +game.id === +id)
-    thisGame.inCart = !thisGame.inCart
-    console.log('thisGame', thisGame)
-    console.log('cartGames', cartGames)
+  const addGameToCartHandler = (item) => {
+    const thisGame = cartGames.find((game) => +game.parentId === +item.id)
+    // thisGame.inCart = !thisGame.inCart
+    // console.log('thisGame', thisGame)
+    console.log('item', item)
 
-    if (cartGames.includes(thisGame)) {
-      setCartGames((prev) => prev.filter((game) => +game.id !== +id))
+    if (thisGame) {
       axios
         .delete(
           `https://639df5493542a2613053e993.mockapi.io/cartGames/${thisGame.id}`
@@ -65,14 +64,15 @@ function App() {
           alert('Ошибка при удалении из корзины')
           console.log(error)
         })
+      setCartGames((prev) => prev.filter((game) => +game.parentId !== +item.id))
     } else {
-      setCartGames([...cartGames, thisGame])
       axios
-        .post('https://639df5493542a2613053e993.mockapi.io/cartGames', thisGame)
+        .post('https://639df5493542a2613053e993.mockapi.io/cartGames', item)
         .catch((error) => {
           alert('Ошибка при добавлении в корзину')
           console.log(error)
         })
+      setCartGames([...cartGames, item])
     }
   }
 
@@ -81,18 +81,13 @@ function App() {
   }
 
   const deleteGameFromCart = (id) => {
-    const thisGame = games.find((game) => +game.id === +id)
-    thisGame.inCart = !thisGame.inCart
-    console.log('thisGame', thisGame)
-    console.log('cartGames', cartGames)
-
-    setCartGames((prev) => prev.filter((game) => +game.id !== +id))
     axios
       .delete(`https://639df5493542a2613053e993.mockapi.io/cartGames/${id}`)
       .catch((error) => {
         alert('Ошибка при удалении из корзины')
         console.log(error)
       })
+    setCartGames((prev) => prev.filter((game) => +game.id !== +id))
   }
 
   console.log('cartGames', cartGames)
