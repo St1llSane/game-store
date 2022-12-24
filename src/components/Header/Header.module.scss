@@ -25,7 +25,7 @@
   &Right {
     display: flex;
     align-items: center;
-    column-gap: 1.7rem;
+    column-gap: 40px;
 
     &Cartwrapper {
       position: relative;
@@ -38,7 +38,7 @@
 
     &Cart {
       font-size: 1.7rem;
-      margin-top: 5px;
+      margin-top: 3px;
       position: relative;
       transition: color 0.1s ease;
 
@@ -65,7 +65,18 @@
     }
 
     &Money {
-      font-weight: 600;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+
+      span {
+				font-weight: 600;
+			}
+
+			svg {
+				font-size: 1.3rem;
+				margin-bottom: 3px;
+			}
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import { RiShoppingCartLine } from 'react-icons/ri'
+import { SlWallet } from 'react-icons/sl'
 import styles from './Header.module.scss'
 import SearchInput from '../UI/SearchInput'
 import CartPreview from '../CartPreview'
@@ -42,7 +43,10 @@ function Header({
             deleteGameFromCart={deleteGameFromCart}
           />
         </div>
-        <span className={styles.headerRightMoney}>5000 руб.</span>
+        <div className={styles.headerRightMoney}>
+          <SlWallet />
+          <span>5000 руб.</span>
+        </div>
       </div>
     </header>
   )

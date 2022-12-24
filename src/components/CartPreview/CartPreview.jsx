@@ -10,15 +10,23 @@ function CartPreview({ cartGames, deleteGameFromCart }) {
 
   return (
     <div className={styles.cartPreview}>
-      <ul className={styles.cartPreviewList}>
-        {cartGames.map((cartGame) => (
-          <CartPreviewItem
-            {...cartGame}
-            deleteGameFromCart={deleteGameFromCart}
-            key={cartGame.id}
-          />
-        ))}
-      </ul>
+      {cartGames.length > 0 ? (
+        <ul className={styles.cartPreviewList}>
+          {cartGames.map((cartGame) => (
+            <CartPreviewItem
+              {...cartGame}
+              deleteGameFromCart={deleteGameFromCart}
+              key={cartGame.id}
+            />
+          ))}
+        </ul>
+      ) : (
+        <div className={styles.cartPreviewEmpty}>
+          <img src="images/empty-box.png" width={120} alt="empty-box" />
+          <span>{`Корзина пуста :(`}</span>
+        </div>
+      )}
+
       <div className={styles.cartPreviewTotal}>
         <ul className={styles.cartPreviewTotalInfo}>
           <li className={styles.cartPreviewTotalInfoItem}>

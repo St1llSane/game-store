@@ -15,21 +15,23 @@ function App() {
   // TODO Добавить обозначение, что игра находится в корзине
 
   useEffect(() => {
-    axios
-      .get('https://639df5493542a2613053e993.mockapi.io/games')
-      .catch((error) => {
-        alert('Ошибка при загрузке игр')
-        console.log(error)
-      })
-      .then((res) => setGames(res.data))
-
-    axios
-      .get('https://639df5493542a2613053e993.mockapi.io/cartGames')
-      .catch((error) => {
-        alert('Ошибка при загрузке корзины')
-        console.log(error)
-      })
-      .then((res) => setCartGames(res.data))
+    const loadData = async () => {
+      await axios
+        .get('https://639df5493542a2613053e993.mockapi.io/cartGames')
+        .catch((error) => {
+          alert('Ошибка при загрузке корзины')
+          console.log(error)
+        })
+        .then((res) => setCartGames(res.data))
+      await axios
+        .get('https://639df5493542a2613053e993.mockapi.io/games')
+        .catch((error) => {
+          alert('Ошибка при загрузке игр')
+          console.log(error)
+        })
+        .then((res) => setGames(res.data))
+    }
+    loadData()
   }, [])
 
   const filteredGames = useMemo(() => {
@@ -48,11 +50,13 @@ function App() {
   const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
 
   const addGameToCartHandler = (id) => {
-    const thisGame = games.find((game) => game.id === id)
+    const thisGame = games.find((game) => +game.id === +id)
     thisGame.inCart = !thisGame.inCart
+    console.log('thisGame', thisGame)
+    console.log('cartGames', cartGames)
 
     if (cartGames.includes(thisGame)) {
-      setCartGames((prev) => prev.filter((game) => game.id !== id))
+      setCartGames((prev) => prev.filter((game) => +game.id !== +id))
       axios
         .delete(
           `https://639df5493542a2613053e993.mockapi.io/cartGames/${thisGame.id}`
@@ -73,16 +77,25 @@ function App() {
   }
 
   const isGameInCart = (id) => {
-    return cartGames.some((game) => game.id === id)
+    return cartGames.some((game) => +game.id === +id)
   }
 
   const deleteGameFromCart = (id) => {
-		const thisGame = games.find((game) => game.id === id)
-		thisGame.inCart = !thisGame.inCart
-		
-    setCartGames((prev) => prev.filter((game) => game.id !== id))
-    axios.delete(`https://639df5493542a2613053e993.mockapi.io/cartGames/${id}`)
+    const thisGame = games.find((game) => +game.id === +id)
+    thisGame.inCart = !thisGame.inCart
+    console.log('thisGame', thisGame)
+    console.log('cartGames', cartGames)
+
+    setCartGames((prev) => prev.filter((game) => +game.id !== +id))
+    axios
+      .delete(`https://639df5493542a2613053e993.mockapi.io/cartGames/${id}`)
+      .catch((error) => {
+        alert('Ошибка при удалении из корзины')
+        console.log(error)
+      })
   }
+
+  console.log('cartGames', cartGames)
 
   return (
     <div className={styles.app}>

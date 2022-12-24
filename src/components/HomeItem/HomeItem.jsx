@@ -6,10 +6,10 @@ function HomeItem({
   name,
   genres,
   price,
-	inCart,
+  inCart,
   setGamesByGenres,
   addGameToCart,
-	isGameInCart
+  isGameInCart,
 }) {
   return (
     <div className={styles.homeItem}>
@@ -27,9 +27,14 @@ function HomeItem({
         </ul>
         <div className={styles.homeItemContentBuy}>
           <span>{price} руб.</span>
-          <button className={`${styles.homeItemContentBuyBtn} ${inCart ? styles.homeItemContentBuyBtnInCart : ''}`} onClick={() => addGameToCart(id)}>
-						{isGameInCart(id) ? 'Удалить' : 'В корзину'}
-					</button>
+          <button
+            className={`${styles.homeItemContentBuyBtn} ${
+              inCart ? styles.homeItemContentBuyBtnInCart : ''
+            }`}
+            onClick={() => addGameToCart(id)}
+          >
+            {isGameInCart(id) ? 'Удалить' : 'В корзину'}
+          </button>
         </div>
       </div>
     </div>
