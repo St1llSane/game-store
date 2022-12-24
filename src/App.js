@@ -15,7 +15,7 @@ function App() {
   // TODO Добавить обозначение, что игра находится в корзине
 
   useEffect(() => {
-    const loadData = async () => {
+    async function fetchingData() {
       await axios
         .get('https://639df5493542a2613053e993.mockapi.io/cartGames')
         .catch((error) => {
@@ -31,7 +31,7 @@ function App() {
         })
         .then((res) => setGames(res.data))
     }
-    loadData()
+    fetchingData()
   }, [])
 
   const filteredGames = useMemo(() => {
@@ -51,8 +51,7 @@ function App() {
 
   const addGameToCartHandler = (item) => {
     const thisGame = cartGames.find((game) => +game.parentId === +item.id)
-    // thisGame.inCart = !thisGame.inCart
-    // console.log('thisGame', thisGame)
+    item.inCart = !item.inCart
     console.log('item', item)
 
     if (thisGame) {
@@ -76,11 +75,15 @@ function App() {
     }
   }
 
-  const isGameInCart = (id) => {
-    return cartGames.some((game) => +game.id === +id)
+  const isGameInCart = (item) => {
+    return cartGames.some((game) => +game.parentId === +item.id)
   }
 
   const deleteGameFromCart = (id) => {
+    // TODO Пофиксить баг, попробовать сделать через parentId
+
+    // const thisGame = cartGames.find((game) => +game.parentId === +id)
+    // thisGame.inCart = !thisGame.inCart
     axios
       .delete(`https://639df5493542a2613053e993.mockapi.io/cartGames/${id}`)
       .catch((error) => {
@@ -90,6 +93,7 @@ function App() {
     setCartGames((prev) => prev.filter((game) => +game.id !== +id))
   }
 
+  console.log('games', games)
   console.log('cartGames', cartGames)
 
   return (

@@ -35,12 +35,12 @@ function HomeItem({
           <span>{price} руб.</span>
           <button
             className={`${styles.homeItemContentBuyBtn} ${
-              inCart ? styles.homeItemContentBuyBtnInCart : ''
+              isGameInCart(item) ? styles.homeItemContentBuyBtnInCart : ''
             }`}
             onClick={gameToCart}
           >
-            {/* {isGameInCart(id) ? 'Удалить' : 'В корзину'} */}
-						В корзину
+            {isGameInCart(item) ? 'Удалить' : 'В корзину'}
+						{/* В корзину */}
           </button>
         </div>
       </div>

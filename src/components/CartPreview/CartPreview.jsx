@@ -5,7 +5,7 @@ import CartPreviewItem from '../CartPreviewItem'
 function CartPreview({ cartGames, deleteGameFromCart }) {
   let cartTotalPrice = 0
   if (cartGames.length > 0) {
-    cartTotalPrice = cartGames.reduce((summ, game) => summ + game.totalPrice, 0)
+    cartTotalPrice = cartGames.reduce((summ, game) => summ + game.price, 0)
   }
 
   return (
