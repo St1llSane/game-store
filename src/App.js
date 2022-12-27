@@ -6,6 +6,8 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 
+const LS_CART_KEY = 'cartItems'
+
 function App() {
   const [games, setGames] = useState([])
   const [searchGamesQuery, setSearchGamesQuery] = useState('')
@@ -13,6 +15,18 @@ function App() {
   const [cartGames, setCartGames] = useState([])
 
   // Добавить сохрание корзины в LocalStorage и сохранить состояние кнопок после перезагрузки страницы
+
+  const setCartAndSave = (newCart) => {
+    setCartGames(newCart)
+    localStorage.setItem(LS_CART_KEY, JSON.stringify(newCart))
+  }
+
+  const loadCart = () => {
+    const cart = localStorage.getItem(LS_CART_KEY)
+    if (cart) {
+      setCartGames(JSON.parse(cart))
+    }
+  }
 
   useEffect(() => {
     async function fetchingData() {
@@ -23,6 +37,8 @@ function App() {
           console.log(error)
         })
         .then((res) => setGames(res.data))
+
+      loadCart()
     }
     fetchingData()
   }, [])
@@ -46,9 +62,10 @@ function App() {
     const thisGame = cartGames.find((game) => +game.parentId === +item.id)
 
     if (thisGame) {
-      setCartGames((prev) => prev.filter((game) => +game.parentId !== +item.id))
+      const newCart = cartGames.filter((game) => +game.parentId !== +item.id)
+      setCartAndSave(newCart)
     } else {
-      setCartGames([...cartGames, item])
+      setCartAndSave([...cartGames, item])
     }
   }
 
@@ -57,7 +74,8 @@ function App() {
   }
 
   const deleteGameFromCart = (id) => {
-    setCartGames((prev) => prev.filter((game) => +game.id !== +id))
+    const newCart = cartGames.filter((game) => +game.id !== +id)
+    setCartAndSave(newCart)
   }
 
   console.log('cartGames', cartGames)
