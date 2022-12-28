@@ -43,10 +43,10 @@ function Header({
             deleteGameFromCart={deleteGameFromCart}
           />
         </div>
-        <div className={styles.headerRightMoney}>
+        <button className={styles.headerRightMoney}>
           <SlWallet />
           <span>5000 руб.</span>
-        </div>
+        </button>
       </div>
     </header>
   )

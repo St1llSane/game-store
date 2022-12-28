@@ -78,8 +78,6 @@ function App() {
     setCartAndSave(newCart)
   }
 
-  console.log('cartGames', cartGames)
-
   return (
     <div className={styles.app}>
       <Header

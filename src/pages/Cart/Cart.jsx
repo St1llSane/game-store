@@ -1,12 +1,13 @@
 import styles from './Cart.module.scss'
+import CartItem from '../../components/CartItem'
+import PageTop from '../../components/UI/PageTop/PageTop'
 
 function Cart() {
   return (
     <div className={styles.cart}>
+      <PageTop>Cart Top</PageTop>
       <div className={styles.cartItems}>
-        <div className={styles.cartItem}>
-					<h4 className={styles.cartItemName}>Name</h4>
-				</div>
+        <CartItem />
       </div>
     </div>
   )
