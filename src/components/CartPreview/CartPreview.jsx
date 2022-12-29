@@ -2,14 +2,18 @@ import { Link } from 'react-router-dom'
 import styles from './CartPreview.module.scss'
 import CartPreviewItem from '../CartPreviewItem'
 
-function CartPreview({ cartGames, deleteGameFromCart }) {
+function CartPreview({ isCartPreviewVisible, cartGames, deleteGameFromCart }) {
   let cartTotalPrice = 0
   if (cartGames.length > 0) {
     cartTotalPrice = cartGames.reduce((summ, game) => summ + game.price, 0)
   }
 
   return (
-    <div className={styles.cartPreview}>
+    <div
+      className={`${styles.cartPreview} ${
+        isCartPreviewVisible ? styles.cartPreviewActive : ''
+      }`}
+    >
       {cartGames.length > 0 ? (
         <ul className={styles.cartPreviewList}>
           {cartGames.map((cartGame) => (
@@ -40,9 +44,11 @@ function CartPreview({ cartGames, deleteGameFromCart }) {
             <div>{cartTotalPrice} руб.</div>
           </li>
         </ul>
-        <Link to="/cart">
-          <button>Перейти в корзину</button>
-        </Link>
+        {cartGames.length > 0 && (
+          <Link to="/cart">
+            <button>Перейти в корзину</button>
+          </Link>
+        )}
       </div>
     </div>
   )

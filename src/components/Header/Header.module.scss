@@ -30,9 +30,16 @@
     &Cartwrapper {
       position: relative;
 
-      &:hover div {
-        visibility: visible;
-				opacity: 1;
+      &Disabled {
+        pointer-events: none;
+      }
+
+      &Toggle {
+        font-size: 1.4rem;
+        display: flex;
+        position: absolute;
+        right: -23px;
+        bottom: -5px;
       }
     }
 
@@ -65,18 +72,18 @@
     }
 
     &Money {
-			display: flex;
-			align-items: center;
-			gap: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
 
       span {
-				font-weight: 600;
-			}
+        font-weight: 600;
+      }
 
-			svg {
-				font-size: 1.3rem;
-				margin-bottom: 3px;
-			}
+      svg {
+        font-size: 1.3rem;
+        margin-bottom: 3px;
+      }
     }
   }
 }

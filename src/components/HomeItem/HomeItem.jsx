@@ -6,12 +6,11 @@ function HomeItem({
   name,
   genres,
   price,
-  inCart,
   setGamesByGenres,
   addGameToCart,
   isGameInCart,
 }) {
-  const item = { id, parentId: id, img, name, price, inCart }
+  const item = { id, parentId: id, img, name, price }
 
   const gameToCart = () => {
     addGameToCart(item)
@@ -40,7 +39,7 @@ function HomeItem({
             onClick={gameToCart}
           >
             {isGameInCart(item) ? 'Удалить' : 'В корзину'}
-						{/* В корзину */}
+            {/* В корзину */}
           </button>
         </div>
       </div>

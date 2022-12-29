@@ -1,7 +1,7 @@
 import { BsPlusLg } from 'react-icons/bs'
 import styles from './CartPreviewItem.module.scss'
 
-function CartPreviewItem({ id, parentId, img, name, price, deleteGameFromCart }) {
+function CartPreviewItem({ id, img, name, price, deleteGameFromCart }) {
   return (
     <li className={styles.cartPreviewListItem} key={id}>
       <img src={img} alt="game_img" />

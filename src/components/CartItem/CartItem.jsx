@@ -1,19 +1,19 @@
 import styles from './CartItem.module.scss'
 
-function CartItem() {
+function CartItem({ id, img, name, price, deleteGameFromCart }) {
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItemLeft}>
-        <img src="images/items/forza5.jpg" alt="item-img" width={225} />
+        <a href="#">
+          <img src={img} alt="item-img" width={205} />
+        </a>
         <div className={styles.cartItemContent}>
-          <h4 className={styles.cartItemContentName}>
-            NameNameNameNameNameNameName
-          </h4>
-          <span className={styles.cartItemContentCost}>2200 руб.</span>
+          <h4 className={styles.cartItemContentName}>{name}</h4>
+          <span className={styles.cartItemContentCost}>{price} руб.</span>
         </div>
       </div>
       <div className={styles.cartItemRight}>
-        <button>Удалить</button>
+        <button onClick={() => deleteGameFromCart(id)}>Удалить</button>
       </div>
     </div>
   )

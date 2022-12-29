@@ -1,3 +1,39 @@
 .pageTop {
-	margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 25px;
+
+  &Btn {
+    font-size: 1.5rem;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #4c5053;
+    border-radius: 6px;
+		margin-bottom: 3px;
+    transition: border-color 0.1s ease;
+
+    &:hover {
+      border-color: #da5038;
+    }
+
+    svg {
+      color: #62676b;
+      margin-bottom: 2px;
+      transition: color 0.1s ease;
+    }
+
+    &:hover svg {
+      color: #da5038;
+    }
+  }
+
+  &Text {
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
 }

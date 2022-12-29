@@ -12,9 +12,8 @@ function App() {
   const [games, setGames] = useState([])
   const [searchGamesQuery, setSearchGamesQuery] = useState('')
   const [gamesByGenres, setGamesByGenres] = useState([])
+  const [isCartPreviewVisible, setIsCartPreviewVisible] = useState(false)
   const [cartGames, setCartGames] = useState([])
-
-  // Добавить сохрание корзины в LocalStorage и сохранить состояние кнопок после перезагрузки страницы
 
   const setCartAndSave = (newCart) => {
     setCartGames(newCart)
@@ -58,6 +57,10 @@ function App() {
 
   const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
 
+  const showCartPreviewHandler = () => {
+    setIsCartPreviewVisible(!isCartPreviewVisible)
+  }
+
   const addGameToCartHandler = (item) => {
     const thisGame = cartGames.find((game) => +game.parentId === +item.id)
 
@@ -83,6 +86,8 @@ function App() {
       <Header
         searchGamesQuery={searchGamesQuery}
         setSearchGamesQuery={setSearchGamesQuery}
+        showCartPreview={showCartPreviewHandler}
+        isCartPreviewVisible={isCartPreviewVisible}
         cartGames={cartGames}
         deleteGameFromCart={deleteGameFromCart}
       />
@@ -101,7 +106,16 @@ function App() {
             />
           }
         ></Route>
-        <Route exact path="/cart" element={<Cart />}></Route>
+        <Route
+          exact
+          path="/cart"
+          element={
+            <Cart
+              cartGames={cartGames}
+              deleteGameFromCart={deleteGameFromCart}
+            />
+          }
+        ></Route>
       </Routes>
     </div>
   )
