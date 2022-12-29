@@ -5,7 +5,7 @@ function CartItem({ id, img, name, price, deleteGameFromCart }) {
     <div className={styles.cartItem}>
       <div className={styles.cartItemLeft}>
         <a href="#">
-          <img src={img} alt="item-img" width={205} />
+          <img src={img} alt="item-img" width={205} height={116} />
         </a>
         <div className={styles.cartItemContent}>
           <h4 className={styles.cartItemContentName}>{name}</h4>

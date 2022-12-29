@@ -1,7 +1,7 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import { RiShoppingCartLine } from 'react-icons/ri'
 import { SlWallet } from 'react-icons/sl'
-import { TfiArrowCircleDown } from 'react-icons/tfi'
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs'
 import styles from './Header.module.scss'
 import SearchInput from '../UI/SearchInput'
 import CartPreview from '../CartPreview'
@@ -11,6 +11,7 @@ function Header({
   setSearchGamesQuery,
   showCartPreview,
   isCartPreviewVisible,
+  setIsCartPreviewVisible,
   cartGames,
   deleteGameFromCart,
 }) {
@@ -43,17 +44,20 @@ function Header({
             }
             to="/cart"
           >
-            <button className={styles.headerRightCart}>
+            <button
+              className={styles.headerRightCart}
+              onClick={() => setIsCartPreviewVisible(false)}
+            >
               <RiShoppingCartLine />
               <span>{cartGames.length}</span>
             </button>
           </Link>
-					{/* Поменять иконку на глаз */}
+          {/* Поменять иконку на глаз */}
           <button
             className={styles.headerRightCartwrapperToggle}
             onClick={showCartPreview}
           >
-            <TfiArrowCircleDown />
+            {isCartPreviewVisible ? <BsEyeSlashFill /> : <BsEyeFill />}
           </button>
           <CartPreview
             isCartPreviewVisible={isCartPreviewVisible}
