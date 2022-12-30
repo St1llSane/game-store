@@ -52,7 +52,6 @@ function Header({
               <span>{cartGames.length}</span>
             </button>
           </Link>
-          {/* Поменять иконку на глаз */}
           <button
             className={styles.headerRightCartwrapperToggle}
             onClick={showCartPreview}

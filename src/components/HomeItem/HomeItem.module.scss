@@ -1,3 +1,5 @@
+@import '../../vars.scss';
+
 .homeItem {
   background-color: #232527;
   border-radius: 20px;
@@ -6,11 +8,16 @@
   position: relative;
 
   &Img {
-    width: 100%;
-    height: 162px;
-    object-fit: cover;
-    border-radius: 20px 20px 0 0;
-    display: block;
+		display: block;
+		border-radius: 20px 20px 0 0;
+		@extend %gameImgHover;
+
+    img {
+      width: 100%;
+      height: 162px;
+      object-fit: cover;
+      display: block;
+    }
   }
 
   &Content {

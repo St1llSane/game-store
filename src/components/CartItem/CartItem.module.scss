@@ -1,3 +1,5 @@
+@import '../../vars.scss';
+
 .cartItem {
   display: flex;
   justify-content: space-between;
@@ -6,21 +8,22 @@
   border-top: 2px solid #35383a;
   border-radius: 2px;
 
-	&:last-child {
-		border-bottom: 2px solid #35383a;
-	}
+  &:last-child {
+    border-bottom: 2px solid #35383a;
+  }
 
   &Left {
     display: flex;
     align-items: center;
     gap: 25px;
 
-    a {
+    &Img {
       display: flex;
+      border-radius: 12px;
+      @extend %gameImgHover;
 
       img {
-				object-fit: cover;
-        border-radius: 12px;
+        object-fit: cover;
       }
     }
   }

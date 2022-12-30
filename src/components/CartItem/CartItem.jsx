@@ -1,10 +1,12 @@
+import { BiSearchAlt } from 'react-icons/bi'
 import styles from './CartItem.module.scss'
 
 function CartItem({ id, img, name, price, deleteGameFromCart }) {
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItemLeft}>
-        <a href="#">
+        <a href="#" className={styles.cartItemLeftImg}>
+          <BiSearchAlt />
           <img src={img} alt="item-img" width={205} height={116} />
         </a>
         <div className={styles.cartItemContent}>

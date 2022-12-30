@@ -1,3 +1,5 @@
+import { BiSearchAlt } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 import styles from './HomeItem.module.scss'
 
 function HomeItem({
@@ -18,7 +20,10 @@ function HomeItem({
 
   return (
     <div className={styles.homeItem}>
-      <img className={styles.homeItemImg} src={img} alt="Item image" />
+      <Link to="/game-page" className={styles.homeItemImg}>
+        <BiSearchAlt />
+        <img className={styles.homeItemImg} src={img} alt="Item image" />
+      </Link>
       <div className={styles.homeItemContent}>
         <h3 className={styles.homeItemContentTitle}>{name}</h3>
         <ul className={styles.homeItemContentGenres}>
@@ -39,7 +44,6 @@ function HomeItem({
             onClick={gameToCart}
           >
             {isGameInCart(item) ? 'Удалить' : 'В корзину'}
-            {/* В корзину */}
           </button>
         </div>
       </div>

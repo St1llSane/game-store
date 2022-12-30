@@ -5,6 +5,8 @@ import styles from './App.module.scss'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
+import GamePage from './pages/GamePage'
+import Footer from './components/Footer'
 
 const LS_CART_KEY = 'cartItems'
 
@@ -82,7 +84,7 @@ function App() {
   }
 
   return (
-    <div className={styles.app}>
+    <div className={styles.App}>
       <Header
         searchGamesQuery={searchGamesQuery}
         setSearchGamesQuery={setSearchGamesQuery}
@@ -117,7 +119,9 @@ function App() {
             />
           }
         ></Route>
+        <Route exact path="/game-page" element={<GamePage />}></Route>
       </Routes>
+			<Footer />
     </div>
   )
 }
