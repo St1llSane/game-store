@@ -4,14 +4,6 @@
   gap: 35px;
 	padding: 10px 0;
   margin-bottom: 40px;
-	// position: fixed;
-	// left: 0;
-	// right: 0;
-	// width: 100%;
-	// max-width: 1200px;
-	// margin: 0 auto;
-	// padding: 0 25px;
-	// z-index: 100;
 
   &Logo {
     color: #f0f0f0;
@@ -34,7 +26,7 @@
   &Right {
     display: flex;
     align-items: center;
-    column-gap: 40px;
+    column-gap: 44px;
 
     &Cartwrapper {
       position: relative;

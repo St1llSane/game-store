@@ -57,41 +57,15 @@
       align-items: center;
       margin-top: auto;
 
-      span,
-      button {
+      span {
+				color: #18191b;
         font-weight: 600;
+				height: 1.7rem;
+				background-color: #fff;
         padding: 0 0.7rem;
         border-radius: 20px;
         display: flex;
         align-items: center;
-      }
-
-      span {
-        color: #18191b;
-        height: 1.7rem;
-        background-color: #fff;
-      }
-
-      &Btn {
-        font-size: 1.1rem;
-        height: 2.5rem;
-        padding-top: 1px;
-        background: linear-gradient(45deg, #415cd1, #324bb9);
-        box-shadow: 0 1px 10px #3e54b4;
-        transition: box-shadow 0.1s ease;
-
-        &:hover {
-          box-shadow: 0 1px 15px #516ada;
-        }
-
-        &InCart {
-          background: linear-gradient(45deg, #1db83f, #12a131);
-          box-shadow: 0 1px 10px #1bb33c;
-
-          &:hover {
-            box-shadow: 0 1px 15px #26c949;
-          }
-        }
       }
     }
   }

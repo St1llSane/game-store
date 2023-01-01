@@ -119,7 +119,16 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/games/:name" element={<GamePage />}></Route>
+          <Route
+            path="/games/:id"
+            element={
+              <GamePage
+                games={games}
+                addGameToCart={addGameToCartHandler}
+                isGameInCart={isGameInCart}
+              />
+            }
+          ></Route>
         </Routes>
       </div>
       <Footer />

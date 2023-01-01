@@ -1,3 +1,59 @@
 .GamePage {
-	
+  &Content {
+    display: grid;
+    grid-template-columns: 580px 480px;
+    grid-template-rows: repeat(1fr);
+    justify-content: space-between;
+    column-gap: 30px;
+
+    &Left {
+      &Video {
+        width: 100%;
+        max-width: 700px;
+        height: 340px;
+        background-color: rgb(202, 202, 202);
+      }
+    }
+
+    &Right {
+			display: flex;
+			flex-direction: column;
+			background-color: #232527;
+			padding: 20px 25px 30px 25px;
+      border-radius: 15px;
+
+      &Name {
+        font-size: 1.6rem;
+        margin-bottom: 17px;
+      }
+
+      &Descr {
+				font-size: 1rem;
+        margin-bottom: 30px;
+      }
+
+      &Genres {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        row-gap: 7px;
+				column-gap: 10px;
+
+        h6 {
+          font-size: 1.1rem;
+          font-weight: 700;
+          width: 100%;
+        }
+
+        li {
+          font-size: 1rem;
+        }
+      }
+
+			&Btn {
+				margin-top: auto;
+				margin-right: auto;
+			}
+    }
+  }
 }

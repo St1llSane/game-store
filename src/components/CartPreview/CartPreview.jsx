@@ -27,7 +27,7 @@ function CartPreview({
         </ul>
       ) : (
         <div className={styles.cartPreviewEmpty}>
-          <img src="images/empty-box.png" width={120} alt="empty-box" />
+          <img src="images/empty-box.png" width={120} alt="empty-cart" />
           <span>{`Корзина пуста :(`}</span>
         </div>
       )}
