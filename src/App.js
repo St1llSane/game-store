@@ -111,7 +111,6 @@ function App() {
             }
           ></Route>
           <Route
-            exact
             path="/cart"
             element={
               <Cart
@@ -120,7 +119,7 @@ function App() {
               />
             }
           ></Route>
-          <Route exact path="/game-page" element={<GamePage />}></Route>
+          <Route path="/games/:name" element={<GamePage />}></Route>
         </Routes>
       </div>
       <Footer />

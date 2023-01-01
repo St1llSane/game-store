@@ -14,15 +14,18 @@ function HomeItem({
 }) {
   const item = { id, parentId: id, img, name, price }
 
-  const gameToCart = () => {
-    addGameToCart(item)
-  }
+  // const navigate = useNavigate()
+  // function navigateTo() {
+  // 	navigate(`/game/${item.name}`)
+  // }
 
   return (
     <div className={styles.homeItem}>
-      <Link to="/game-page" className={styles.homeItemImg}>
-        <BiSearchAlt />
-        <img className={styles.homeItemImg} src={img} alt="Item image" />
+      <Link to={`games/${name}`}>
+        <button className={styles.homeItemImg}>
+          <BiSearchAlt />
+          <img className={styles.homeItemImg} src={img} alt="Item image" />
+        </button>
       </Link>
       <div className={styles.homeItemContent}>
         <h3 className={styles.homeItemContentTitle}>{name}</h3>
@@ -41,7 +44,7 @@ function HomeItem({
             className={`${styles.homeItemContentBuyBtn} ${
               isGameInCart(item) ? styles.homeItemContentBuyBtnInCart : ''
             }`}
-            onClick={gameToCart}
+            onClick={() => addGameToCart(item)}
           >
             {isGameInCart(item) ? 'Удалить' : 'В корзину'}
           </button>
