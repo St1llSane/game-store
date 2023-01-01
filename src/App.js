@@ -14,8 +14,8 @@ function App() {
   const [games, setGames] = useState([])
   const [searchGamesQuery, setSearchGamesQuery] = useState('')
   const [gamesByGenres, setGamesByGenres] = useState([])
-  const [isCartPreviewVisible, setIsCartPreviewVisible] = useState(false)
   const [cartGames, setCartGames] = useState([])
+  const [isCartPreviewVisible, setIsCartPreviewVisible] = useState(false)
 
   const setCartAndSave = (newCart) => {
     setCartGames(newCart)

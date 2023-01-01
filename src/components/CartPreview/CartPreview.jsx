@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import styles from './CartPreview.module.scss'
 import CartPreviewItem from '../CartPreviewItem'
+import CartTotal from '../UI/CartTotal'
 
-function CartPreview({ isCartPreviewVisible, cartGames, deleteGameFromCart }) {
-  let cartTotalPrice = 0
-  if (cartGames.length > 0) {
-    cartTotalPrice = cartGames.reduce((summ, game) => summ + game.price, 0)
-  }
-
+function CartPreview({
+  cartGames,
+  isCartPreviewVisible,
+  setIsCartPreviewVisible,
+  deleteGameFromCart,
+}) {
   return (
     <div
       className={`${styles.cartPreview} ${
@@ -30,25 +31,14 @@ function CartPreview({ isCartPreviewVisible, cartGames, deleteGameFromCart }) {
           <span>{`Корзина пуста :(`}</span>
         </div>
       )}
-
       <div className={styles.cartPreviewTotal}>
-        <ul className={styles.cartPreviewTotalInfo}>
-          <li className={styles.cartPreviewTotalInfoItem}>
-            <div>Товаров:</div>
-            <span></span>
-            <div>{cartGames.length} шт.</div>
-          </li>
-          <li className={styles.cartPreviewTotalInfoItem}>
-            <div>К оплате:</div>
-            <span></span>
-            <div>{cartTotalPrice} руб.</div>
-          </li>
-        </ul>
-        {cartGames.length > 0 && (
+        <CartTotal cartGames={cartGames}>
           <Link to="/cart">
-            <button>Перейти в корзину</button>
+            <button onClick={() => setIsCartPreviewVisible(false)}>
+              Перейти в корзину
+            </button>
           </Link>
-        )}
+        </CartTotal>
       </div>
     </div>
   )

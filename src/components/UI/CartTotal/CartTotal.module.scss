@@ -1,0 +1,38 @@
+.cartTotal {
+  &Info {
+    &Item {
+      display: flex;
+      justify-content: space-between;
+      column-gap: 5px;
+
+      & + & {
+        margin-top: 12px;
+      }
+
+      div {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      span {
+        flex: 1;
+        border-bottom: 1px dashed #fff;
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  button {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 2px 9px 3px 9px;
+    background-color: #e77f6c;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      background-color: #da5038;
+    }
+  }
+}

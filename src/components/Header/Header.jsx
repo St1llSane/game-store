@@ -60,6 +60,7 @@ function Header({
           </button>
           <CartPreview
             isCartPreviewVisible={isCartPreviewVisible}
+            setIsCartPreviewVisible={setIsCartPreviewVisible}
             cartGames={cartGames}
             deleteGameFromCart={deleteGameFromCart}
           />

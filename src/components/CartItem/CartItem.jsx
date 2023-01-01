@@ -3,7 +3,7 @@ import styles from './CartItem.module.scss'
 
 function CartItem({ id, img, name, price, deleteGameFromCart }) {
   return (
-    <div className={styles.cartItem}>
+    <li className={styles.cartItem}>
       <div className={styles.cartItemLeft}>
         <a href="#" className={styles.cartItemLeftImg}>
           <BiSearchAlt />
@@ -17,7 +17,7 @@ function CartItem({ id, img, name, price, deleteGameFromCart }) {
       <div className={styles.cartItemRight}>
         <button onClick={() => deleteGameFromCart(id)}>Удалить</button>
       </div>
-    </div>
+    </li>
   )
 }
 
