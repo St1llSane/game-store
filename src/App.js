@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 import styles from './App.module.scss'
@@ -44,21 +44,6 @@ function App() {
     fetchingData()
   }, [])
 
-  const filteredGames = useMemo(() => {
-    if (gamesByGenres.length === 0) {
-      if (!searchGamesQuery) return games
-      return games.filter((game) => {
-        return game.name.toLowerCase().includes(searchGamesQuery.toLowerCase())
-      })
-    } else {
-      return games.filter((game) => {
-        return game.genres.some((genre) => genre === gamesByGenres)
-      })
-    }
-  }, [games, searchGamesQuery, gamesByGenres])
-
-  const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
-
   const showCartPreviewHandler = () => {
     setIsCartPreviewVisible(!isCartPreviewVisible)
   }
@@ -101,8 +86,9 @@ function App() {
             path="/"
             element={
               <Home
-                filteredGames={filteredGames}
-                genres={genres}
+                games={games}
+                searchGamesQuery={searchGamesQuery}
+                gamesByGenres={gamesByGenres}
                 setGamesByGenres={setGamesByGenres}
                 addGameToCart={addGameToCartHandler}
                 setCartGames={setCartGames}

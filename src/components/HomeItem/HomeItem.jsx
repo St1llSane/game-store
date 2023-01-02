@@ -15,11 +15,6 @@ function HomeItem({
 }) {
   const item = { id, parentId: id, img, name, price }
 
-  // const navigate = useNavigate()
-  // function navigateTo() {
-  // 	navigate(`/game/${item.name}`)
-  // }
-
   return (
     <div className={styles.homeItem}>
       <Link to={`games/${id}`}>

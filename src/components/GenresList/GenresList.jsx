@@ -1,9 +1,11 @@
 import styles from './GenresList.module.scss'
 
-function GenresList({ genres, setGamesByGenres }) {
+function GenresList({ games, setGamesByGenres }) {
   const gamesByGenresHandler = (e) => {
     setGamesByGenres(e.target.innerText)
   }
+
+	const genres = [...new Set(games.map((game) => game.genres).flat())].sort()
 
   return (
     <div className={styles.genresBlock}>

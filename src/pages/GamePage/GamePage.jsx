@@ -64,6 +64,7 @@ function GamePage({ games, addGameToCart, isGameInCart }) {
           </ul>
           <div className={styles.GamePageContentRightBtn}>
             <InCartBtn
+              item={item}
               addGameToCart={addGameToCart}
               isGameInCart={isGameInCart}
             />
